@@ -331,6 +331,7 @@ class Board:
                 '-Werror=implicit-fallthrough',
                 '-cl-single-precision-constant',
                 '-Wno-vla-extension',
+                '-ftrapping-math',  # prevent re-ordering of sanity checks
             ]
         else:
             env.CFLAGS += [
@@ -393,6 +394,7 @@ class Board:
             '-Wno-redundant-decls',
             '-Wno-unknown-pragmas',
             '-Wno-expansion-to-defined',
+            '-Wno-invalid-offsetof',
             '-Werror=reorder',
             '-Werror=cast-align',
             '-Werror=attributes',
@@ -452,6 +454,7 @@ class Board:
                 '-Wno-gnu-variable-sized-type-not-at-end',
                 '-Werror=implicit-fallthrough',
                 '-cl-single-precision-constant',
+                '-ftrapping-math',  # prevent re-ordering of sanity checks
             ]
             if self.cc_version_gte(cfg, 10, 0):
                 use_prefix_map = True
@@ -1015,6 +1018,7 @@ class sitl_periph(sitl):
             AP_PERIPH_MAG_ENABLED = 0,
             AP_PERIPH_BATTERY_BALANCE_ENABLED = 0,
             AP_PERIPH_BATTERY_TAG_ENABLED = 0,
+            AP_PERIPH_BATTERY_BMS_ENABLED = 0,
             AP_PERIPH_MSP_ENABLED = 0,
             AP_PERIPH_BARO_ENABLED = 0,
             AP_PERIPH_EFI_ENABLED = 0,
@@ -1036,6 +1040,7 @@ class sitl_periph(sitl):
             AP_PERIPH_BUZZER_ENABLED = 0,
             AP_PERIPH_BUZZER_WITHOUT_NOTIFY_ENABLED = 0,
             AP_PERIPH_RTC_GLOBALTIME_ENABLED = 0,
+            AP_PERIPH_ACTUATOR_TELEM_ENABLED = 0,
         )
 
         try:
