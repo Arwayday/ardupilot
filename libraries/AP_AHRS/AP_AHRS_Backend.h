@@ -95,9 +95,6 @@ public:
     // requires_position should be true if horizontal position configuration should be checked
     virtual bool pre_arm_check(bool requires_position, char *failure_msg, uint8_t failure_msg_len) const = 0;
 
-    // check all cores providing consistent attitudes for prearm checks
-    virtual bool attitudes_consistent(char *failure_msg, const uint8_t failure_msg_len) const { return true; }
-
     // see if EKF lane switching is possible to avoid EKF failsafe
     virtual void check_lane_switch(void) {}
 
@@ -204,11 +201,6 @@ public:
     // Return true if estimate is valid
     virtual bool get_relative_position_D_origin(postype_t &posD) const WARN_IF_UNUSED {
         return false;
-    }
-
-    // return ground speed estimate in meters/second. Used by ground vehicles.
-    float groundspeed(void) {
-        return groundspeed_vector().length();
     }
 
     // return true if we will use compass for yaw
